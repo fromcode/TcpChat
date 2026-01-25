@@ -1,7 +1,7 @@
 # Commands
 
-- `/nick <name>` - nama pengguna pribadi, atau disamarkan
-- `/join <name>` - masuk sebuah room, jika room tidak ada, maka room baru otomatis terbuat. pengguna hanya bisa di satu room di waktu yang bersamaan
-- `/rooms` - menunjukkan seluruh room yang tersedia
-- `/msg <msg>` - pesan yang dikirim dan dapat dilihat di room tersebut
-- `/quit` - keluar dari chat server
+- `/nick <name>` - User name, or User can be Anonymous
+- `/join <name>` - Join a room, if room doesn't exist, new room will be created, User can be only one room at the same time
+- `/rooms` - Show all room available to join
+- `/msg <msg>` - broadcast message to everyone in room
+- `/quit` - disconnects from chat server
