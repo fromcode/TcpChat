@@ -65,10 +65,12 @@ func (s *server) join(c *client, args []string) {
 	}
 	r.members[c.conn.RemoteAddr()] = c
 
-	if c.room != nil {
+	s.quitCurrectRoom(c)
 
-	}
 	c.room = r
+
+	r.broadcast(c, fmt.Sprintf("%s has joined room chat", c.nick))
+	c.msg(fmt.Sprintf("welcome to %s chat", r.name))
 }
 
 func (s *server) listRooms(c *client, args []string) {
@@ -81,4 +83,11 @@ func (s *server) msg(c *client, args []string) {
 
 func (s *server) quit(c *client, args []string) {
 
+}
+
+func (s *server) quitCurrectRoom(c *client) {
+	if c.room != nil {
+		delete(c.room.members, c.conn.RemoteAddr())
+		c.room.broadcast(c, fmt.Sprintf("%s has left the room chat", c.nick))
+	}
 }
