@@ -53,7 +53,22 @@ func (s *server) nick(c *client, args []string) {
 }
 
 func (s *server) join(c *client, args []string) {
+	roomName := args[1]
 
+	r, ok := s.rooms[roomName]
+	if !ok {
+		r = &room{
+			name:    roomName,
+			members: make(map[net.Addr]*client),
+		}
+		s.rooms[roomName] = r
+	}
+	r.members[c.conn.RemoteAddr()] = c
+
+	if c.room != nil {
+
+	}
+	c.room = r
 }
 
 func (s *server) listRooms(c *client, args []string) {
