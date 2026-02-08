@@ -9,13 +9,13 @@ func main() {
 	s := newServer()
 	go s.run()
 
-	listener, err := net.Listen("tcp", ":8080")
+	listener, err := net.Listen("tcp", ":8888")
 	if err != nil {
 		log.Fatalf("can't start the server: %s", err.Error())
 	}
 
 	defer listener.Close()
-	log.Printf("started server on :8080")
+	log.Printf("started server on :8888")
 
 	for {
 		conn, err := listener.Accept()
