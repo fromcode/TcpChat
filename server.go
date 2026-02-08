@@ -89,11 +89,16 @@ func (s *server) msg(c *client, args []string) {
 		return
 	}
 
-	c.room.broadcast(c, c.nick+": "+strings.Join(args[1:len(args)], " "))
+	c.room.broadcast(c, c.nick+": "+strings.Join(args[1:], " "))
 }
 
-func (s *server) quit(c *client, args []string) {
+func (s *server) quit(c *client, _ []string) {
+	log.Printf("user has disconnected: %s", c.conn.RemoteAddr().String())
 
+	s.quitCurrectRoom(c)
+
+	c.msg("see you soon buddy")
+	c.conn.Close()
 }
 
 func (s *server) quitCurrectRoom(c *client) {
